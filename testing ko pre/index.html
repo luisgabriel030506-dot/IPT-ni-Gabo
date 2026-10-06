@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Green Cities — Urban Sustainability Atlas</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body data-cursor="default">
+
+  <!-- Cursor glow -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- ===== Sidebar Nav (desktop) ===== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-top">
+      <div class="brand">
+        <div class="brand-mark">GC</div>
+        <div class="brand-text">
+          <strong>Green&nbsp;Cities</strong>
+          <span>Urban Atlas · v2</span>
+        </div>
+      </div>
+    </div>
+
+    <nav class="side-nav" id="sideNav">
+      <a href="#home" class="side-link active" data-num="01">Overview</a>
+      <a href="#atlas" class="side-link" data-num="02">Atlas</a>
+      <a href="#timeline" class="side-link" data-num="03">Timeline</a>
+      <a href="#scores" class="side-link" data-num="04">Scores</a>
+      <a href="#brief" class="side-link" data-num="05">Briefing</a>
+    </nav>
+
+    <div class="sidebar-foot">
+      <div class="pulse-indicator">
+        <span class="pulse-dot"></span>
+        <span>Live data feed</span>
+      </div>
+      <div class="ticker" id="ticker">
+        <div class="ticker-line">🌱 Copenhagen · 72% cycling</div>
+        <div class="ticker-line">💧 Singapore · 47% green cover</div>
+        <div class="ticker-line">☀️ Amsterdam · 64% renewables</div>
+        <div class="ticker-line">♻️ Curitiba · 85% waste recycled</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===== Mobile top bar ===== -->
+  <header class="mobile-bar">
+    <div class="brand">
+      <div class="brand-mark">GC</div>
+      <strong>Green&nbsp;Cities</strong>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- ===== Main ===== -->
+  <main class="main">
+
+    <!-- ========== Overview ========== -->
+    <section class="page" id="home">
+      <div class="page-header">
+        <span class="kicker">01 — Overview</span>
+        <h1 class="display">
+          The <em>green</em> atlas of<br />the modern city.
+        </h1>
+        <p class="lede">
+          An interactive index of the world's most ambitious urban sustainability
+          programs — measured, ranked, and mapped in real time.
+        </p>
+      </div>
+
+      <div class="overview-grid">
+        <div class="overview-cell">
+          <span class="cell-label">Partner cities</span>
+          <span class="cell-value" data-count="120" data-suffix="+">0</span>
+        </div>
+        <div class="overview-cell">
+          <span class="cell-label">Trees planted</span>
+          <span class="cell-value" data-count="4" data-suffix="M">0</span>
+        </div>
+        <div class="overview-cell">
+          <span class="cell-label">Avg. CO₂ cut</span>
+          <span class="cell-value" data-count="45" data-suffix="%">0</span>
+        </div>
+        <div class="overview-cell">
+          <span class="cell-label">Green transit</span>
+          <span class="cell-value" data-count="80" data-suffix="%">0</span>
+        </div>
+      </div>
+
+      <div class="overview-note">
+        <div class="note-rule"></div>
+        <p>
+          Since 2018, Green Cities has tracked <strong>1,400+ initiatives</strong>
+          across <strong>6 continents</strong> — from vertical forests in Milan
+          to solar canals in Amsterdam.
+        </p>
+      </div>
+    </section>
+
+    <!-- ========== Atlas ========== -->
+    <section class="page" id="atlas">
+      <div class="page-header">
+        <span class="kicker">02 — Atlas</span>
+        <h2 class="display-sm">Click a city on the map.</h2>
+        <p class="lede">Explore sustainability profiles from our global network.</p>
+      </div>
+
+      <div class="atlas-layout">
+        <!-- Map -->
+        <div class="map-wrap">
+          <svg class="world-map" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet">
+            <!-- Simplified continents -->
+            <g class="continents">
+              <!-- North America -->
+              <path d="M120,120 Q200,80 300,110 L340,160 Q320,230 280,270 L200,300 Q150,280 130,220 Z" />
+              <!-- South America -->
+              <path d="M280,300 Q340,290 360,340 L340,430 Q300,460 280,420 L260,360 Z" />
+              <!-- Europe -->
+              <path d="M480,120 Q540,100 580,120 L590,170 Q550,200 510,190 L480,160 Z" />
+              <!-- Africa -->
+              <path d="M490,220 Q560,200 600,240 L590,340 Q540,400 500,370 L470,300 Z" />
+              <!-- Asia -->
+              <path d="M600,110 Q760,80 850,130 L870,200 Q800,250 720,240 L640,200 Z" />
+              <!-- Oceania -->
+              <path d="M800,340 Q870,320 900,370 L880,430 Q820,440 800,400 Z" />
+            </g>
+
+            <!-- Hotspots injected by JS -->
+            <g class="hotspots" id="hotspots"></g>
+          </svg>
+        </div>
+
+        <!-- Detail panel -->
+        <aside class="detail-panel" id="detailPanel">
+          <div class="detail-empty">
+            <div class="empty-icon">🗺️</div>
+            <p>Select a city hotspot to view its profile.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ========== Timeline ========== -->
+    <section class="page" id="timeline">
+      <div class="page-header">
+        <span class="kicker">03 — Timeline</span>
+        <h2 class="display-sm">Milestones.</h2>
+        <p class="lede">Key moments in the Green Cities movement.</p>
+      </div>
+
+      <div class="timeline-scroll" id="timelineScroll">
+        <!-- injected by script.js -->
+      </div>
+    </section>
+
+    <!-- ========== Scores ========== -->
+    <section class="page" id="scores">
+      <div class="page-header">
+        <span class="kicker">04 — Scores</span>
+        <h2 class="display-sm">Sustainability index.</h2>
+        <p class="lede">Weighted scores across six indicators.</p>
+      </div>
+
+      <div class="scores-grid" id="scoresGrid">
+        <!-- injected by script.js -->
+      </div>
+    </section>
+
+    <!-- ========== Briefing ========== -->
+    <section class="page" id="brief">
+      <div class="page-header">
+        <span class="kicker">05 — Briefing</span>
+        <h2 class="display-sm">Get the monthly briefing.</h2>
+        <p class="lede">Case studies, toolkits, and events — once a month, no noise.</p>
+      </div>
+
+      <form class="brief-form" id="briefForm" novalidate>
+        <div class="field">
+          <label for="bName">Name</label>
+          <input id="bName" type="text" placeholder="Your name" required />
+        </div>
+        <div class="field">
+          <label for="bEmail">Email</label>
+          <input id="bEmail" type="email" placeholder="you@city.gov" required />
+        </div>
+        <div class="field">
+          <label for="bCity">Your city</label>
+          <input id="bCity" type="text" placeholder="Where are you based?" />
+        </div>
+        <button type="submit" class="btn-submit">Subscribe →</button>
+        <p class="form-note" id="formNote"></p>
+      </form>
+
+      <footer class="page-footer">
+        <p>© <span id="year"></span> Green Cities Atlas · Built for urbanists.</p>
+      </footer>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
